@@ -1,2 +1,2 @@
 # INGSOFT
-Proyecto Semestral
+Proyectos Varios
