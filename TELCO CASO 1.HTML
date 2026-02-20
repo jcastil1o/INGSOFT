@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-BE, Reactivación de Servicios TELCO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 50px;
+            font-size: 2em;
+        }
+        
+        .architecture {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            position: relative;
+        }
+        
+        .node {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 3px solid;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .node-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+        }
+        
+        .node-subtitle {
+            color: #718096;
+            font-size: 0.85em;
+            margin-top: 5px;
+        }
+        
+        .component {
+            background: #f7fafc;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 6px;
+            font-size: 0.9em;
+            border-left: 3px solid;
+            transition: all 0.2s ease;
+        }
+        
+        .component:hover {
+            transform: translateX(5px);
+            background: #edf2f7;
+        }
+        
+        .database {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        /* Colores por servidor */
+        .billing {
+            border-color: #3182ce;
+        }
+        .billing .node-title { color: #3182ce; }
+        .billing .component { border-color: #3182ce; }
+        
+        .caja {
+            border-color: #38a169;
+        }
+        .caja .node-title { color: #38a169; }
+        .caja .component { border-color: #38a169; }
+        
+        .motor {
+            border-color: #e53e3e;
+            grid-column: span 2;
+        }
+        .motor .node-title { color: #e53e3e; }
+        .motor .component { border-color: #e53e3e; }
+        .motor .components-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .network {
+            border-color: #d69e2e;
+        }
+        .network .node-title { color: #d69e2e; }
+        .network .component { border-color: #d69e2e; }
+        
+        .icon {
+            font-size: 1.5em;
+            margin-right: 8px;
+        }
+        
+        /* Conexiones */
+        .connections {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        .connection-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            margin: 10px 0;
+            background: #f7fafc;
+            border-radius: 8px;
+            border-left: 4px solid;
+            font-size: 0.95em;
+        }
+        
+        .connection-item.billing { border-color: #3182ce; }
+        .connection-item.caja { border-color: #38a169; }
+        .connection-item.motor { border-color: #e53e3e; }
+        .connection-item.network { border-color: #d69e2e; }
+        
+        .arrow {
+            margin: 0 15px;
+            font-size: 1.5em;
+            color: #a0aec0;
+        }
+        
+        .connection-label {
+            color: #718096;
+            font-size: 0.85em;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reactivación de Servicios TELCO</h1>
+        
+        <div class="architecture">
+            <!-- Billing Server -->
+            <div class="node billing">
+                <div class="node-title">
+                    <span class="icon">🏢</span>Billing Server
+                    <div class="node-subtitle">Oracle 19c</div>
+                </div>
+                <div class="database">💾 Billing DB<br><small>Facturas y cuentas</small></div>
+            </div>
+            
+            <!-- Caja -->
+            <div class="node caja">
+                <div class="node-title">
+                    <span class="icon">🏦</span>Caja
+                    <div class="node-subtitle">AS/400 DB2</div>
+                </div>
+                <div class="database">💳 Pagos DB2<br><small>Transacciones</small></div>
+            </div>
+            
+            <!-- Motor de Mora -->
+            <div class="node motor">
+                <div class="node-title">
+                    <span class="icon">⚙️</span>Servidor Aplicaciones - Motor de Mora
+                </div>
+                <div class="components-grid">
+                    <div class="component">⏰ Scheduler<br><small>Jobs programados</small></div>
+                    <div class="component">📋 Reglas de Negocio<br><small>Políticas de mora</small></div>
+                    <div class="component">🔄 Conciliador DB2<br><small>Validación pagos</small></div>
+                    <div class="component">🚫 Gestor Bloqueos<br><small>Suspensión/Activación</small></div>
+                </div>
+                <div class="database" style="margin-top: 15px;">📝 DB Auditoría<br><small>Logs y trazas</small></div>
+            </div>
+            
+            <!-- Network Core -->
+            <div class="node network">
+                <div class="node-title">
+                    <span class="icon">📡</span>Network Core
+                    <div class="node-subtitle">Vendor Linux</div>
+                </div>
+                <div class="component">📬 Cola Interna<br><small>Comandos de red</small></div>
+                <div class="component">📱 SMS Center<br><small>Notificaciones</small></div>
+            </div>
+        </div>
+        
+        <!-- Flujo de Datos -->
+        <div class="connections">
+            <h2 style="margin-bottom: 20px; color: #2d3748;">📊 Flujo de Datos</h2>
+            
+            <div class="connection-item billing">
+                <strong>Billing DB</strong>
+                <span class="arrow">→</span>
+                <strong>Scheduler</strong>
+                <span class="connection-label">Lectura de facturas vencidas</span>
+            </div>
+            
+            <div class="connection-item caja">
+                <strong>Pagos DB2</strong>
+                <span class="arrow">→</span>
+                <strong>Conciliador DB2</strong>
+                <span class="connection-label">Lectura de registros de pago</span>
+            </div>
+            
+            <div class="connection-item motor">
+                <strong>Scheduler / Conciliador</strong>
+                <span class="arrow">→</span>
+                <strong>Reglas de Negocio</strong>
+                <span class="arrow">→</span>
+                <strong>Gestor Bloqueos</strong>
+                <span class="connection-label">Procesamiento interno</span>
+            </div>
+            
+            <div class="connection-item network">
+                <strong>Gestor Bloqueos</strong>
+                <span class="arrow">→</span>
+                <strong>Cola Interna</strong>
+                <span class="arrow">→</span>
+                <strong>SMS Center</strong>
+                <span class="connection-label">Comandos BLOCK/UNBLOCK y notificaciones</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
